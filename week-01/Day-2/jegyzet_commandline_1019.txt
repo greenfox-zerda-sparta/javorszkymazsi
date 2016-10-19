@@ -61,7 +61,11 @@ git checkout HEAD fileneve - a working directoryban töröljük a változtatásokat (
 git reset HEAD filename - kitörli a staging areaból a változtatás tényét, nem magát a változtatást a fájlban
 			  ezt akkor érdemes, mikor nem egy commiton belül akarjuk a változtatást rögzíteni
 git reset SHA (a SHA elso 7 számjegyét kell beírni) - visszaállít egy korábbi állapotot (törlünk vele x commitban rögzített változtatást)
-HEAD - legutóbbi commit
+	HEAD - legutóbbi commit
+git revert - visszaállítok commitot
+git reset --soft - kiürítjük a zsákot
+	  --hard - felgyújtjuk a zsákot
+git push -f - sose használjuk így :D
 
 remote (azért, hogy többet tudjanak dolgozni egy adott projekten)
 get remote - megmutatja a remote-ok nevét
