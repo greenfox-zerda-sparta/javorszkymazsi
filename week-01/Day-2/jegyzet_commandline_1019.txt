@@ -1,0 +1,87 @@
+______________________
+$$$$ COMMAND LINE $$$$ 
+The command line is a text interface for the computer's operating system. 
+
+$ - shell prompt. mikor megjelenik, azt jelenti, hogy kész arra, hogy parancsokat írjunk be
+
+
+filesystem: 	file-ok és directoryk összessége
+root directory - minden directory parentje
+working directory - az a directory, amin épp dolgozom
+
+parancsok:
+pwd (print working directory) - megmutatja a parent directorykat és azok parentjeit <3 so much love
+ls - megmutatja mi van a jelenlegi folderben (command line-ban directorynak hívják)
+ls -R - listázza a fájlokat az adott folderen belül
+cd folderneve (change directory) - ha beírom, lelép egyet a tree-n abba a directoryba
+	pl. cd 2015 - ebben az esetben a 2015 a cd command argumentje (összefoglalva: cd - command, 2015 - argument)
+cd .. - fellép egyet a tree-n
+cd jan/memory - többet is lehet lépni
+mkdir folderneve (make directory) - directory létrehozása az adott directoryn belül
+touch file.kiterjesztés - létrehoz egy új file-t (reminder: touch - command, keyboard.txt (pl) - argument)
+rmdir folderneve - folder eltávolítása
+cp folder/file where - fájl másolása
+cat valami.txt | wc (word count) - megmutatja hány szó/karakter van benne
+	1  2  15 - sor szó karakter
+cat valami.txt - megmutatja mi van a fájlban
+sort filenév - abc sorrendbe teszi a fájlban a sorokat
+grep manipulations filenév - valamire szûrsz
+grep -v manipulations filenév - valami kivételével szûrsz
+
+_____________
+$$$$ GIT $$$$
+verzió-követõ
+Git is the industry-standard version control system for web developers
+
+$ szintén
+git init (initialize) - The command sets up all the tools Git needs to begin tracking changes made to the project.
+			ezzel kezdünk el egy új git projektet
+
+3 része van a Git workflownak:
+1. working directory (itt lehet változtatásokat végezni a fájlokon)
+2. staging area (itt lehet behozni változtatásokat)
+3. repository (itt lehet menteni 'commit'-ként)
+
+parancsok:
+git init - innentõl kezdve kezdi követni a directoryt
+git status - csekkoljuk a git státuszát (?)
+git add fileneve - ezt a fájlt feltesszük a trackelt fájlok közé (több fájlt is egyszerre hozzá lehet adni)
+git rm fileneve - ezt a fájlt nem szeretném tovább követni
+git diff fileneve - csekkolja, hogy a working directory és a staging area között mi a különbség
+			ami fehérrel van: a staging area-ban van
+			ami +zöld: hozzá lett adva a working directoryhez
+			ami -piros: el lett véve a working directorybol
+				q-t kell megnyomni, hogy kilépjünk ebbol a módból
+git commit -m "commit message: mit miért"- commitoljuk a repository-ba a nemtommitmertnemértem
+		SHA - 40 karakteres azonosító
+git log - le lehet csekkolni korábbi verziókat vele
+git show HEAD - megmutatja a head commitot, whatever that means
+git checkout HEAD fileneve - a working directoryban töröljük a változtatásokat (tehát a fájlban)
+git reset HEAD filename - kitörli a staging areaból a változtatás tényét, nem magát a változtatást a fájlban
+			  ezt akkor érdemes, mikor nem egy commiton belül akarjuk a változtatást rögzíteni
+git reset SHA (a SHA elso 7 számjegyét kell beírni) - visszaállít egy korábbi állapotot (törlünk vele x commitban rögzített változtatást)
+HEAD - legutóbbi commit
+
+remote (azért, hogy többet tudjanak dolgozni egy adott projekten)
+get remote - megmutatja a remote-ok nevét
+get remote -v - megmutatja a remote-ok nevét url-lel
+git remote add [remote-name] [url] - hozzáadunk egy új remote-ot/valakit (pl. git remote add pb https://github.com/paulboone/ticgit)
+			  innentol a name-et lehet használni az url nélkül, tudni fogja a rendszer honnan szedje
+git fetch name - infókat szerezni/fetchelni egy adott remote-ról (megtudhatjuk hány %on áll, ilyesmi)
+branchek - majd megtudjuk, de gondolom folderszeruségek
+git fetch origin (ld eggyel feljebb)
+git pull - automatikusan fetcheli és mergeli a sajátoddal
+git clone - ilyenkor csak fetcheli az infót, nem mergeli
+git push [remote-name] [branch-name] - felküldöd a saját anyagodat az anyahajóra (serverre)
+git remote show [remote-name] - megvizsgálni egy remote-ot
+git remote rename [remote-name] [new remote-name] - így lesz pb-bol paul, de okoz ez galibát?
+
+
+
+__________________
+$$$$ KÉRDÉSEK $$$$
+mi a git célja? közösen tudjanak egymástól akár távol lévo emberek ugyanazon a projekten dolgozni + dokumentálás
+hogyan érdemes commitokat elnevezni?
+van-e jelentosége a parancsoknál kis és nagy betu között? HEAD
+mik azok a branchek? nem volt erom utánakeresni
+remote név csere, érdemes?
