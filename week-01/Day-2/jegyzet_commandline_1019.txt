@@ -27,6 +27,7 @@ cat valami.txt - megmutatja mi van a fájlban
 sort filenév - abc sorrendbe teszi a fájlban a sorokat
 grep manipulations filenév - valamire szûrsz
 grep -v manipulations filenév - valami kivételével szûrsz
+echo "valami" >> file.txt - valamit beleteszünk a fájlba
 
 _____________
 $$$$ GIT $$$$
