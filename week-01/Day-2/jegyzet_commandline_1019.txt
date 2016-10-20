@@ -29,6 +29,9 @@ grep manipulations filenév - valamire szûrsz
 grep -v manipulations filenév - valami kivételével szûrsz
 echo "valami" >> file.txt - valamit beleteszünk a fájlba
 
+SHELL - a program, ami beszélgetni az oprendszerrel
+	Windowsnél Powershell=Bash
+
 _____________
 $$$$ GIT $$$$
 verzió-követõ
