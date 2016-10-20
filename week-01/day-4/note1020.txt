@@ -1,0 +1,73 @@
+$$$$ HTML $$$$
+
+<h1 class="something">
+    attribute="value"
+<em></em> - emphasize, dõlt lesz
+<strong></strong> - bold
+
+
+
+<small></small> - kisebb lesz
+<mark></mark> - kijelöli
+<sup></sup> - pl nm2-nél a kettõt felteszi
+<sub></sub> - <sup> ellentéte
+<pre></pre> - preformatted. úgy mutatja a szöveget, ahogyan az editorban látjuk
+<img src="image.jpg" alt="elmondjuk mi ez">
+<a href="url(protocol mindig kell!)/path"></a> (external and internal links)
+
+<a href="&top">go to top</a> - 
+<a href="http://thenetninja.co.uk" target="_blank"></a> - ha erre valaki rákattint, új ablakban nyitja meg
+
+List fajták:
+- unordered list <ul> + <li> - pl. pontok, idézõjeles felsorolás
+	<ul>
+		<li>valami</li>
+		<li>valami2</li>
+		<li>valami3</li>
+		<li>valami4</li>
+	</ul>
+
+- ordered list <ol> + <li> - sorban van 1, 2, 3
+	<ol>
+		<li>valami</li>
+		<li>valami2</li>
+		<li>valami3</li>
+		<li>valami4</li>
+	</ol>
+- definition list <dl> + <dt> + <dd>
+	<dl>
+		<dt>Unordered list</dt> - title
+		<dd>Unordered list is a list without any consideration to order.</dd> - description
+		<dt>Ordered list</dt>
+		<dd>This is a list in which order is important.</dd>
+		<dt>Definition list</dt>
+		<dd>Definition list contains terms and descriptions, much like a dictonary.</dd>
+	</dl>
+
+<div> - division
+<script> - javascriptet raksz be vele <script src="javascript.js"></script>
+<span> -  <span> is very much like a <div> element,
+		but <div> is a block-level element whereas a <span> is an inline element. (tehát a div paragrafuson kívül, span belül?)
+<section> - ez is csak ilyen tagoló element, általában headerönként szokták
+<aside> - These sections are often represented as sidebars or inserts. 
+
+
+CSS linkelése (<head>be megy):
+<link href="style.css" rel="stylesheet">
+
+CSS
+CSS is a Collection of Rules
+each rule targets a specific tag or element on a HTML document
+#page-header .page-header {font-size: 10px;}
+			   property    value
+selector     selector	    declaration
+
+box-sizing: megadja mit vegyen alapul mikor heightot meg widthet írunk be
+
+
+
+Descendant selector - pl. #header h1 {declaration}
+Conflict --> Cascading - a következo line felülírja
+Inheritence - pl divben van h1. ha a div classát targetelem, a h1et is érinti
+Specificity - az a sor nyer, és fog érvényesülni, amelyik konkrétabb. pl. #valami p {} > p {}
+The Box Model: width x height, padding, border, margin

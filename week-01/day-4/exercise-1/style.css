@@ -1,0 +1,19 @@
+body {
+  color: rgb(220, 21, 0);
+  margin: 30px 10px;
+}
+
+h1 {
+  background-color: rgb(255, 255, 0);
+  font-weight: normal;
+  font-size: 30px;
+  font-family: "Times New Roman";
+  box-sizing: border-box;
+  width: 240px;
+  height: 75px;
+  line-height: .8;
+  border: 3px black;
+  padding: 22.5px;
+  margin: 10px 35px;
+  border: 4px solid black;
+}

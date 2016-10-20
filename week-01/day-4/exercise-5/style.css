@@ -1,0 +1,30 @@
+body {
+  margin: 20px 50px;
+  color: #000;
+  font-family: "Times New Roman";
+}
+
+h1 {
+  color: rgb(0, 0, 255);
+}
+
+h2 {
+  color: rgb(249, 166, 12);
+}
+
+.foodlist {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.main {
+  color: rgb(0, 0, 255);
+}
+
+.fruits {
+  list-style-type: disc;
+}
+
+.apple {
+  color: rgb(220, 0, 0);
+}
