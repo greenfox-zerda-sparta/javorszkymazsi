@@ -14,30 +14,6 @@ void Song::add_rating(float new_rating) {
   }
 }
 
-void Song::rock() {
-  this->is_rock = true;
-}
-
-void Song::pop() {
-  this->is_pop = true;
-}
-
-void Song::reggae() {
-  this->is_reggae = true;
-}
-
-std::string Song::get_genre() {
-  if (is_rock) {
-    return "Rock";
-  } else if (is_pop) {
-    return "Pop";
-  } else if (is_reggae) {
-    return "Reggae";
-  } else {
-    return "Please set its genre first.";
-  }
-}
-
 float Song::get_average_rating() {
   return rating / rating_count;
 }
