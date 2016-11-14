@@ -6,6 +6,7 @@
 class Reggae : public Song {
 public:
   Reggae(std::string artist, std::string title, float rating);
+  void add_rating(float new_rating);
   virtual ~Reggae();
 };
 
