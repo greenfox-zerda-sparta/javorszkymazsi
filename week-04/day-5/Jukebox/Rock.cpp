@@ -21,3 +21,4 @@ void Rock::add_rating(float new_rating) {
 Rock::~Rock() {
 
 }
+  

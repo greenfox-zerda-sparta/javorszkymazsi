@@ -13,6 +13,8 @@ public:
   std::string get_genre();
   std::string get_title();
   std::string get_artist();
+  float get_rating();
+  int get_rating_count();
   ~Song();
 protected:
   std::string genre;

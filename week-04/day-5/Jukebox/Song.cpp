@@ -30,6 +30,14 @@ std::string Song::get_artist() {
   return this->artist;
 }
 
+float Song::get_rating() {
+  return this->rating;
+}
+
+int Song::get_rating_count() {
+  return this->rating_count;
+}
+
 Song::~Song() {
 
 }
