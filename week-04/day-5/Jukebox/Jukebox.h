@@ -11,6 +11,7 @@ public:
   float get_average_rating_by_artist(std::string artist);
   float get_average_rating_by_genre(std::string genre);
   std::string get_top_rated_title();
+  std::string get_top_rated_genre();
   virtual ~Jukebox();
 private:
   Song** songs;

@@ -63,6 +63,40 @@ std::string Jukebox::get_top_rated_title() {
   return top_rated;
 }
 
+std::string Jukebox::get_top_rated_genre() {
+  float rock = 0, reggae = 0, pop = 0, song_of_rock = 0, song_of_reggae = 0, song_of_pop = 0;
+  for (int i = 0; i < song_count; ++i) {
+    if (songs[i]->Song::get_genre() == "Rock") {
+      rock += songs[i]->Song::get_average_rating();
+      ++song_of_rock;
+    } else if (songs[i]->Song::get_genre() == "Reggae") {
+      reggae += songs[i]->Song::get_average_rating();
+      ++song_of_reggae;
+    } else {
+      pop += songs[i]->Song::get_average_rating();
+      ++song_of_pop;
+    }
+  }
+  float ave_rock = 0, ave_pop = 0, ave_reggae = 0;
+  if (song_of_rock != 0) {
+    ave_rock = rock / song_of_rock;
+  }
+  if (song_of_reggae != 0) {
+    ave_reggae = reggae / song_of_reggae;
+  }
+  if (song_of_pop != 0) {
+    ave_pop = pop / song_of_pop;
+  }
+
+  if (ave_rock > ave_reggae && ave_rock > ave_pop) {
+    return "Rock";
+  } else if (ave_reggae > ave_rock && ave_reggae > ave_pop) {
+    return "Reggae";
+  } else {
+    return "Pop";
+  }
+}
+
 Jukebox::~Jukebox() {
   delete songs;
 }

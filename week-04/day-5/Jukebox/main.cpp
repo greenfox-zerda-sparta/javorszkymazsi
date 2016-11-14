@@ -27,5 +27,11 @@ int main() {
   cout << cafe.get_average_rating_by_artist("AC/DC") << endl;
   cout << cafe.get_average_rating_by_genre("Rock") << endl;
   cout << cafe.get_top_rated_title() << endl;
+  Reggae no_woman("Bob Marley", "No Woman, No Cry", 3);
+  cafe.add_song(no_woman);
+  Pop cant_touch_this("MC Hammer", "Can\'t Touch This", 5);
+  cafe.add_song(cant_touch_this);
+  cout << cafe.get_top_rated_genre() << endl;
+
   return 0;
 }
