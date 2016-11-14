@@ -16,10 +16,9 @@ void Jukebox::add_song(Song& song) {
   delete[] songs;
   songs = temp;
   ++song_count;
-
 }
 
-void Jukebox::add_rating_by_title_and_artist(std::string title, std::string artist, float new_rating) {
+void Jukebox::add_rating_by_artist_and_title(std::string artist, std::string title, float new_rating) {
   for (int i = 0; i < song_count; ++i) {
     if (title == songs[i]->Song::get_title() && artist == songs[i]->Song::get_artist()) {
       songs[i]->Song::add_rating(new_rating);
