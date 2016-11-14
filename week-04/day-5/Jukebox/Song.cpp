@@ -18,6 +18,18 @@ float Song::get_average_rating() {
   return rating / rating_count;
 }
 
+std::string Song::get_genre() {
+  return this->genre;
+}
+
+std::string Song::get_title() {
+  return this->title;
+}
+
+std::string Song::get_artist() {
+  return this->artist;
+}
+
 Song::~Song() {
 
 }

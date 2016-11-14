@@ -1,3 +1,4 @@
+#include <iostream>
 #include <string>
 
 #ifndef SONG_H_
@@ -9,6 +10,9 @@ public:
   void add_rating(float new_rating);
   float get_rating(int index);
   float get_average_rating();
+  std::string get_genre();
+  std::string get_title();
+  std::string get_artist();
   ~Song();
 protected:
   std::string genre;
