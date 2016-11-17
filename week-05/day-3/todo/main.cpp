@@ -2,7 +2,7 @@
 #include <string>
 //#include <fstream>
 #include <sstream>
-#include "ListTasks.h"
+#include "Task.h"
 
 using namespace std;
 
@@ -15,11 +15,14 @@ int main(int argc, char* argv[]) {
   }
 
   string arg_1 = argv[1];
+  string arg_2 = argv[2];
   if (argc == 2 && arg_1 == "-l") {
-    ListTasks list;
+    Task list;
     cout << list.print_content() << endl;
-  } else if (argc == 2 && arg_1 == "-a") {
-    cout << "adj hozzá valamit" << endl;
+  } else if (argc == 3 && arg_1 == "-a") {
+    Task add;
+    add.add_task(arg_2);
+    cout << add.print_content() << endl;
   } else if (argc == 2 && arg_1 == "-r"){
     cout << "törlünk valamit" << endl;
   } else if (argc == 2 && arg_1 == "-c") {
