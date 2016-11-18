@@ -13,6 +13,7 @@ public:
   void read_file();
   void add_new_task(Task& new_task);
   std::string list_todos();
+  void remove_task(int task_number);
   virtual ~TaskHandler();
 private:
   Task** todos;

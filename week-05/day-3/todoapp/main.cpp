@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdlib.h>
 #include "TaskHandler.h"
 
 using namespace std;
@@ -28,11 +29,12 @@ int main(int argc, char* argv[]) {
     Task new_task(argv[2]);
     task_handler.read_file();
     task_handler.add_new_task(new_task);
-    //cout << list.print_content();
+    cout << task_handler.list_todos();
   } else if (argc == 3 && argv[1][1] == r[1]) {
-    //int remove_task = atoi(argv[2]);
-    //list.remove_task(remove_task);
-    //cout << list.print_content();
+    int remove_task = atoi(argv[2]);
+    task_handler.read_file();
+    task_handler.remove_task(remove_task);
+    cout << task_handler.list_todos();
   }
   return 0;
 }

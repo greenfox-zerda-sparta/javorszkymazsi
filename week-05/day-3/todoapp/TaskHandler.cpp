@@ -25,12 +25,10 @@ void TaskHandler::read_file() {
   input_file.open("todo.txt");
   for (int i = 0; i < line_count; ++i) {
     getline(input_file, buffer);
-    std::cout << buffer;
     Task* temp_task = new Task(buffer);
     temp[i] = temp_task;
   }
   this->todo_count = line_count;
-  std::cout << line_count;
   this->todos = temp;
   input_file.close();
 }
@@ -66,6 +64,21 @@ std::string TaskHandler::list_todos() {
     return "No todos for today! :)\n";
   }
   return content;
+}
+
+void TaskHandler::remove_task(int task_number) {
+  Task** temp = new Task*[todo_count - 1];
+  for (int i = 0; i < todo_count - 1; ++i) {
+    if (i < task_number - 1) {
+      temp[i] = todos[i];
+    } else {
+      temp[i] = todos[i + 1];
+    }
+  }
+  --todo_count;
+  delete[] todos;
+  todos = temp;
+  write_to_file();
 }
 
 TaskHandler::~TaskHandler() {
