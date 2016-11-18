@@ -18,7 +18,7 @@ int main(int argc, char* argv[]) {
 
   // ./todo -l, -a
   if (argc == 2 && argv[1][1] == l[1]) {
-    //cout << list.print_content();
+    cout << task_handler.list_todos();
   } else if (argc == 2 && argv[1][1] == a[1]) {
     cerr << "Unable to add: No task is provided" << endl;
   }

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include "Task.h"
 
 #ifndef TASKHANDLER_H_
@@ -11,6 +12,7 @@ public:
   void write_to_file();
   void read_file();
   void add_new_task(Task& new_task);
+  std::string list_todos();
   virtual ~TaskHandler();
 private:
   Task** todos;

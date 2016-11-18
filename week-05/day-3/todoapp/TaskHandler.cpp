@@ -49,6 +49,25 @@ void TaskHandler::add_new_task(Task& new_task) {
   write_to_file();
 }
 
+std::string TaskHandler::list_todos() {
+  std::ifstream input_file("todo.txt");
+  std::string content = "";
+  std::string buffer;
+  int line_count = 1;
+  while (getline(input_file, buffer)) {
+    std::stringstream ss;
+    ss << line_count;
+    std::string str;
+    ss >> str;
+    content += str + " - " + buffer + "\n";
+    ++line_count;
+  }
+  if (content == "") {
+    return "No todos for today! :)\n";
+  }
+  return content;
+}
+
 TaskHandler::~TaskHandler() {
   delete[] todos;
 }
