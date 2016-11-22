@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "Stack.h"
+#include "ErrorHandling.h"
 
 using namespace std;
 
@@ -14,22 +15,16 @@ int main() {
     stack.push(2);
     stack.push(2);
   } catch (int ex) {
-    if (ex == 1) {
-      cout << "You can\'t push more elements. The stack can contain only 5." << endl;
-    } else if (ex == 2) {
-      cout << "There\'s nothing in this stack." << endl;
-    }
+    ErrorHandling error;
+    cout << error.interpret_exception(ex) << endl;
   }
 
   try {
-    Stack stack2;
-    stack2.pop();
+    Stack stack;
+    stack.pop();
   } catch (int ex) {
-    if (ex == 1) {
-      cout << "You can\'t push more elements. The stack can contain only 5." << endl;
-    } else if (ex == 2) {
-      cout << "There\'s nothing in this stack." << endl;
-    }
+    ErrorHandling error;
+    cout << error.interpret_exception(ex) << endl;
   }
   return 0;
 }
