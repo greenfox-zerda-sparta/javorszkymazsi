@@ -10,7 +10,7 @@ int main() {
   vector<vector<int>> outer_v(5);
   for (unsigned int i = 0; i < outer_v.size(); ++i) {
     for (unsigned int j = 0; j < outer_v.size(); ++i) {
-      outer_v[i][j] = 0;
+      outer_v[i].push_back(0);
     }
   }
 
