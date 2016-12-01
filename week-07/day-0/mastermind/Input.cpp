@@ -34,5 +34,5 @@ std::string Input::get_input() {
 }
 
 Input::~Input() {
-  // TODO Auto-generated destructor stub
+
 }

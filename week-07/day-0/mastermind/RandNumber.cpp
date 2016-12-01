@@ -1,6 +1,7 @@
 #include "RandNumber.h"
 
 RandNumber::RandNumber() {
+  srand (time(NULL));
   int a = rand() % 10;
   int b = rand() % 10;
   while (a == b) {
@@ -25,10 +26,6 @@ RandNumber::RandNumber() {
   cc >> ccc;
   dd >> ddd;
   this->num = aaa + bbb + ccc + ddd;
-  this->first = a;
-  this->second = b;
-  this->third = c;
-  this->fourth = d;
 }
 
 std::string RandNumber::get_num() {
