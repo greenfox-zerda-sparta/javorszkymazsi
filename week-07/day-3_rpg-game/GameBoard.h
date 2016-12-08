@@ -22,6 +22,9 @@ public:
   virtual ~GameBoard();
 private:
   std::vector<std::string> game_board;
+  unsigned int game_board_x = 10;
+  unsigned int game_board_y = 10;
+  unsigned int image_size_in_pixels = 72;
 };
 
 #endif /* GAMEBOARD_H_ */

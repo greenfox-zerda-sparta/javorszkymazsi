@@ -14,7 +14,7 @@ GameBoard::GameBoard(GameContext& context) {
 }
 
 std::vector<std::string> GameBoard::load_map() {
-  std::ifstream map_file("map-05.txt"); //TODO randomize file load
+  std::ifstream map_file("map-01.txt"); //TODO randomize file load
   std::string buffer;
   while (getline(map_file, buffer)) {
     game_board.push_back(buffer);
@@ -24,20 +24,20 @@ std::vector<std::string> GameBoard::load_map() {
 }
 
 void GameBoard::set_floor(GameContext& context) {
-  for (unsigned int i = 0; i < 10; ++i) {
-    for (unsigned int j = 0; j < 10; ++j) {
+  for (unsigned int i = 0; i < game_board_x; ++i) {
+    for (unsigned int j = 0; j < game_board_y; ++j) {
       if (game_board[j][i] == '1') {
-        context.draw_sprite("floor.bmp", i * 72, j * 72);
+        context.draw_sprite("floor.bmp", i * image_size_in_pixels, j * image_size_in_pixels);
       }
     }
   }
 }
 
 void GameBoard::set_wall(GameContext& context) {
-  for (unsigned int i = 0; i < 10; ++i) {
-    for (unsigned int j = 0; j < 10; ++j) {
+  for (unsigned int i = 0; i < game_board_x; ++i) {
+    for (unsigned int j = 0; j < game_board_y; ++j) {
       if (game_board[j][i] == '0') {
-        context.draw_sprite("wall.bmp", i * 72, j * 72);
+        context.draw_sprite("wall.bmp", i * image_size_in_pixels, j * image_size_in_pixels);
       }
     }
   }

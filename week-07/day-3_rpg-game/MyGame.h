@@ -12,7 +12,9 @@
 #include <vector>
 #include <stdlib.h>
 #include <time.h>
+#include "Hero.h"
 #include "GameBoard.h"
+
 
 class MyGame : public Game {
 public:
@@ -29,55 +31,51 @@ public:
   }
   virtual void render(GameContext& context) {
     GameBoard game_board(context);
-    std::vector<std::string> vector = game_board.load_map();
+    std::vector<std::string> map = game_board.load_map();
+    Hero hero;
     //game_board.set_floor(context);
     //game_board.set_wall(context);
 
     srand (time(NULL));
     unsigned int rand_j = rand() % 10;
     unsigned int rand_i = rand() % 10;
-    while (vector[rand_j][rand_i] == '0') {
+    while (map[rand_j][rand_i] == '0') {
       rand_j = rand() % 10;
       rand_i = rand() % 10;
     }
-    context.draw_sprite("skeleton.bmp", rand_i * 72, rand_j * 72);
+    context.draw_sprite("skeleton.bmp", rand_i * image_size_in_pixels, rand_j * image_size_in_pixels);
 
     if (context.was_key_pressed(ARROW_DOWN)) {
-      if (y < 648 && vector[y_move_count + 1][x_move_count] != '0') {
-        y += 72;
-        ++y_move_count;
-        hero_file_name = "hero-down.bmp";
+      if (y < 9 && map[y + 1][x] != '0') {
+        y += hero.move_down();
+        hero_file_name = hero.get_image_file_name();
       }
     }
     if (context.was_key_pressed(ARROW_RIGHT)) {
-      if (x < 648 && vector[y_move_count][x_move_count + 1] != '0') {
-        x += 72;
-        ++x_move_count;
-        hero_file_name = "hero-right.bmp";
+      if (x < 9 && map[y][x + 1] != '0') {
+        x += hero.move_right();
+        hero_file_name = hero.get_image_file_name();
       }
     }
     if (context.was_key_pressed(ARROW_UP)) {
-      if (y > 0 && vector[y_move_count - 1][x_move_count] != '0') {
-        y -= 72;
-        --y_move_count;
-        hero_file_name = "hero-up.bmp";
+      if (y > 0 && map[y - 1][x] != '0') {
+        y += hero.move_up();
+        hero_file_name = hero.get_image_file_name();
       }
     }
     if (context.was_key_pressed(ARROW_LEFT)) {
-      if (x > 0 && vector[y_move_count][x_move_count - 1] != '0') {
-        x -= 72;
-        --x_move_count;
-        hero_file_name = "hero-left.bmp";
+      if (x > 0 && map[y][x - 1] != '0') {
+        x += hero.move_left();
+        hero_file_name = hero.get_image_file_name();
       }
     }
-    context.draw_sprite(hero_file_name, x, y);
+    context.draw_sprite(hero_file_name, x * image_size_in_pixels, y * image_size_in_pixels);
     context.render();
   }
 private:
   int x = 0;
   int y = 0;
-  int x_move_count = 0;
-  int y_move_count = 0;
+  unsigned int image_size_in_pixels = 72;
   std::string hero_file_name = "hero-down.bmp";
 };
 
