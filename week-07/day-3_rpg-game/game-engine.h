@@ -21,7 +21,7 @@ private:
 public:
   GameContext(unsigned int screen_width, unsigned int screen_height) {
     SDL_Init(SDL_INIT_VIDEO);
-    screen = SDL_CreateWindow("My Game Window",
+    screen = SDL_CreateWindow("TkWanderer",
                               SDL_WINDOWPOS_UNDEFINED,
                               SDL_WINDOWPOS_UNDEFINED,
                               screen_width, screen_height,

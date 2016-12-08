@@ -8,9 +8,11 @@
 #ifndef MYGAME_H_
 #define MYGAME_H_
 
-#include "game-engine.h"
 #include <fstream>
 #include <vector>
+#include <stdlib.h>
+#include <time.h>
+#include "GameBoard.h"
 
 class MyGame : public Game {
 public:
@@ -22,25 +24,23 @@ public:
     context.load_file("hero-up.bmp");
     context.load_file("hero-left.bmp");
     context.load_file("hero-right.bmp");
+    context.load_file("skeleton.bmp");
+    context.load_file("boss.bmp");
   }
   virtual void render(GameContext& context) {
-    std::ifstream map_file("map-05.txt"); //TODO randomize file load
-    std::vector<std::string> vector;
-    std::string buffer;
-    while (getline(map_file, buffer)) {
-      vector.push_back(buffer);
-    }
-    map_file.close();
-    for (unsigned int i = 0; i < 10; ++i) {
-      for (unsigned int j = 0; j < 10; ++j) {
-        if (vector[j][i] == '0') {
-          context.draw_sprite("wall.bmp", i * 72, j * 72);
-        } else {
-          context.draw_sprite("floor.bmp", i * 72, j * 72);
-        }
-      }
-    }
+    GameBoard game_board(context);
+    std::vector<std::string> vector = game_board.load_map();
+    //game_board.set_floor(context);
+    //game_board.set_wall(context);
 
+    srand (time(NULL));
+    unsigned int rand_j = rand() % 10;
+    unsigned int rand_i = rand() % 10;
+    while (vector[rand_j][rand_i] == '0') {
+      rand_j = rand() % 10;
+      rand_i = rand() % 10;
+    }
+    context.draw_sprite("skeleton.bmp", rand_i * 72, rand_j * 72);
 
     if (context.was_key_pressed(ARROW_DOWN)) {
       if (y < 648 && vector[y_move_count + 1][x_move_count] != '0') {
