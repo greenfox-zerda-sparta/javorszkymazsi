@@ -1,0 +1,28 @@
+coutok külön classbe, constructorban ne legyen cout
+coutok több sorba
+
+guess_count
+
+game -> kiszervezni több függvénybe
+
+opció: új játékot játszani a végén. ebben az esetben new-val kellene létrehozni a randNumot
+
+randomnumber generálás: tömbben 0-9ig számok, shuffle, kiveszi az elsõ négy elemet
+
+
+
+
+
+
+
+
+
+extern : globális változókhoz
+
+typedef std::vector<std::string> map_row;	---arra jó, hogy a type-ot nem kell mindig kiírni
+
+
+
+KÉRDÉSEK
+printf vagy cout?
+%s - string

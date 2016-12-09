@@ -1,0 +1,8 @@
+Hey there! This is Mastermind.
+
+The purpose of this game is for you to guess 4 numbers in the right order.
+The numbers are between 0-9 and a number can only appear once.
+If you have the right number in the right place that means it's a BULL,
+if you have the right number but not in its right place that's a COW.
+
+You have 10 guesses. Good luck!

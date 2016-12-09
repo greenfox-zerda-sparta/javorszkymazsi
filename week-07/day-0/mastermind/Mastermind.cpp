@@ -1,28 +1,63 @@
 #include "MasterMind.h"
 
 MasterMind::MasterMind() {
-  std::cout << "Hey there! This is Mastermind." << std::endl << std::endl;
-  std::cout << "The purpose of this game is for you to guess 4 numbers in the right order. The numbers are between 0-9 and a number can only appear once." << std::endl;
-  std::cout << "If you have the right number in the right place that means it's a BULL, if you have the right number but not in its right place that's a COW." << std::endl;
-  std::cout << std::endl;
-  std::cout << "You have 10 guesses. Good luck!" << std::endl;
-  this->guesses = 10;
-  this->num = RandNumber();
+  this->game_instructions = load_file("mastermind-instructions.txt");
+  print_to_screen(game_instructions);
+  this->secret_number = RandNumber();
+  this->secret_number_in_string = secret_number.get_num();
+  this->initial_guesses = 10;
+  this->guess_count = 0;
   game();
 }
 
 void MasterMind::game() {
-  std::string rand_num = num.get_num();
-  for (int i = 0; i < guesses; ++i) {
-    Input input;
-    input.compare_strings(rand_num);
-    if (input.get_input() == rand_num) {
-      std::cout << "You've guessed right and you won!" << std::endl;
+  while (can_guess()) {
+    Input user_guess;
+    user_guess.compare_strings(secret_number_in_string);
+    ++guess_count;
+    if (is_correct_guess(user_guess)) {
+      won();
       return;
     }
-    std::cout << "You have " << input.get_bull() << " bull(s) and " << input.get_cow() << " cow(s). Try again!" << std::endl;
+    if (are_guesses_reached_maximum()) {
+      lost();
+      return;
+    }
+    how_many_bulls_and_cows(user_guess);
   }
-  std::cout << "I'm sorry but you've lost. The correct number was: " << rand_num << std::endl;
+}
+
+void MasterMind::how_many_bulls_and_cows(Input user_guess) {
+  std::cout << "You have " << user_guess.get_bull() << " bull(s) and " << user_guess.get_cow() << " cow(s). Try again!" << std::endl;
+}
+
+void MasterMind::won() {
+  print_to_screen("You've guessed right and you won!");
+}
+
+void MasterMind::lost() {
+  print_to_screen("I'm sorry but you've lost. The correct number was: " + secret_number_in_string + ".");
+}
+
+bool MasterMind::are_guesses_reached_maximum() {
+  if (guess_count == initial_guesses) {
+    return true;
+  }
+  return false;
+}
+
+bool MasterMind::can_guess() {
+  if (guess_count <= initial_guesses) {
+    return true;
+  }
+  return false;
+}
+
+bool MasterMind::is_correct_guess(Input user_guess) {
+  if (user_guess.get_input() == secret_number_in_string) {
+    return true;
+  }
+  return false;
 }
 
 MasterMind::~MasterMind() {
