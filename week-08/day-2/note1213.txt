@@ -1,0 +1,114 @@
+MAP
+http://www.cplusplus.com/reference/map/map/
+#include <map>
+
+int main() {
+	std::map<std::string, int> map;
+	std::string weapon2 = "Weapon2";
+	map["Weapon"] = 100;
+	map["Weapon2"] = 120;
+	std::cout << map[weapon] << std::endl;		---ezzel elkerülhetjük, hogy loopot kelljen használni
+	return 0;
+}
+
+
+methodok használata:
+PAIR
+http://www.cplusplus.com/reference/utility/pair/
+
+map.insert(std::pair<std::string, int>("test", 1));
+map.insert(std::make_pair("test", 1));			----ez jobb
+
+	std::pair<int, int> test;
+	test.first = 10;
+	test.second = 20;
+
+
+
+ITERATORS
+http://www.cplusplus.com/reference/iterator/
+#include <iostream>
+#include <iterator>
+#include <map>
+
+int main() {
+	std::map<std::string, int> names;
+	std::map<std::string, int>::iterator iterator;
+
+	names["Peter"] = 19;
+	names["CodingMadeEasy"] = 3;
+
+	for (iterator = names.begin(); iterator != names.end(); ++iterator) {
+		std::cout << iterator->first << std::endl;				---ez pointer!!!!
+	}
+	return 0;
+}
+
+
+vector<int>::iterator it;
+
+
+
+
+READ ONLY ALGORITHM
+#include <algorithm>
+#include <numeric>
+
+int sum = accumulate(numbers.begin(), numbers.end(), 0); 		---ez ugyanaz, mintha for looppal összeadtunk volna a vector számait
+
+	accumulate(words.begin(), words.end(), string(""));
+
+
+
+READ WRITE ALGORITHM
+fill(numbers.begin(), numbers.end(), 0)); 		---0-val fogja feltölteni az egész vectort
+
+replace(numbers.begin(), numbers.end(), 5, 10);			---az 5ösöket cseréljük a 10esre
+replace(words.begin(), words.end(), "recieve", "receive");
+
+
+
+SORTING ALGORITHM
+
+int main() {
+	const int size_numbers = 10;
+	int numbers[] = {10, 1, 9, 2, 8, 3, 7, 4, 6, 5};
+	vector<int> nums(numbers, numbers + size_numbers);	-----elvileg így bekerült a vectorba a teljes array
+	sort(nums.begin(), nums.end());			---növekvõ sorrendbe teszi
+	sort(words.end(), words.begin());		----csökkenõ sorrendbe teszi
+					-----a stringeket abc sorrendbe teszi
+	return 0;
+}
+
+
+
+
+REVERSE ITERATOR
+
+int main() {
+	vector<int> numbers;
+	for (int i = 1; i <= 10; ++i) {
+		numbers.push_back(i);
+	}
+	for (vector<int>::iterator iter = numbers.begin(); i != numbers.end(); ++iter) {
+		cout << *iter << endl;
+	}			---iterator
+	for (vector<int>::reverse_iterator riter = numbers.rbegin(); riter != number.rend(); ++riter) {
+		cout << *riter << endl;
+	}			----reverse iterator
+	return 0;			----rbegin() == end(); rend() == begin();
+}
+
+
+
+SETS
+mindenbõl csak egy szerepelhet
+http://www.cplusplus.com/reference/set/set/
+#include <set>
+
+hasonló mint a map. de itt a key == value
+pl.
+
+names.insert("Peter");		--ebben az esetben "Peter" a key és a value is; nem lehet ugyanaz az értékük btw
+
+
