@@ -11,6 +11,8 @@ public:
   Color(const Color& other_color);
   //Color(std::string hex_number) throw (const char*);
   Color blend(const Color& other);
+  void darken(float amount) throw (const char*);
+  void lighten(float amount) throw (const char*);
   void set_red(unsigned char amount);
   void set_green(unsigned char amount);
   void set_blue(unsigned char amount);

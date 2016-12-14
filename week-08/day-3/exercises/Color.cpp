@@ -18,6 +18,24 @@ Color::Color(const Color& other_color) {
   this->blue = other_color.blue;
 }
 
+void Color::darken(float amount) throw (const char*) {
+  if (amount < 0 || amount > 1) {
+    throw "Invalid number as a parameter. Choose between 0 and 1.";
+  }
+  this->red = red - red * amount;
+  this->green = green - green * amount;
+  this->blue = blue - blue * amount;
+}
+
+void Color::lighten(float amount) throw (const char*) {
+  if (amount < 0 || amount > 1) {
+    throw "Invalid number as a parameter. Choose between 0 and 1.";
+  }
+  this->red = red + (255 - red) * amount;
+  this->green = green + (255 - green) * amount;
+  this->blue = blue + (255 - blue) * amount;
+}
+
 /*Color::Color(std::string hex_number) throw (const char*) {
   if (hex_number.size() != 6) {
     throw "Invalid hexadecimal number.";

@@ -10,5 +10,13 @@ int main() {
   std::cout << (int)c3.get_red() << std::endl;
   std::cout << (int)c3.get_green() << std::endl;
   std::cout << (int)c3.get_blue() << std::endl;
+  c3.darken(0.2);
+  std::cout << (int)c3.get_red() << std::endl;
+  std::cout << (int)c3.get_green() << std::endl;
+  std::cout << (int)c3.get_blue() << std::endl;
+  c3.lighten(.8);
+  std::cout << (int)c3.get_red() << std::endl;
+  std::cout << (int)c3.get_green() << std::endl;
+  std::cout << (int)c3.get_blue() << std::endl;
   return 0;
 }
