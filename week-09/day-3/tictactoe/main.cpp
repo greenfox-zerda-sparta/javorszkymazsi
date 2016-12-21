@@ -1,6 +1,6 @@
-#include "Board.h"
+#include "Game.h"
 
 int main() {
-  Board board;
+  Game tictactoe;
   return 0;
 }

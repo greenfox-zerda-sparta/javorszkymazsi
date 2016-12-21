@@ -1,8 +1,8 @@
 #include "Board.h"
 
-Board::Board() {
-  initialize_board_values(19);
-  construct_board(19);
+Board::Board(unsigned int grid_size) {
+  initialize_board_values(grid_size);
+  construct_board(grid_size);
 }
 
 void Board::construct_board(unsigned int grid_size) {
@@ -22,4 +22,8 @@ void Board::initialize_board_values(unsigned int grid_size) {
       board[i].push_back(0);
     }
   }
+}
+
+void Board::set_coordinate(unsigned int x, unsigned int y) {
+  board[x][y] = 1;
 }
