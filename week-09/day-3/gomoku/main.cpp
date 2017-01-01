@@ -1,8 +1,8 @@
-#include "MyGame.h"
+#include "Gomoku.h"
 
 int main(int argc, char* argv[]) {
-  MyGame game;
-  GameEngine engine(&game, 570, 570);
+  Gomoku gomoku;
+  GameEngine engine(&gomoku, 760, 760);
   engine.run();
   return 0;
 }
