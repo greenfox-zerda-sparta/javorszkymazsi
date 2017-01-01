@@ -11,7 +11,6 @@ void Gomoku::init(GameContext& context) {
 }
 
 void Gomoku::render(GameContext& context) {
-
   create_board(context);
   context.render();
 }
@@ -33,11 +32,9 @@ void Gomoku::create_board(GameContext& context) {
     for (int j = 0; j < game_board[i].size(); j++) {
       if (game_board[i][j] == 0) {
         context.draw_sprite("tile.bmp", i * WIDTH, j * HEIGHT);
-      }
-      else if (game_board[i][j] == 1) {
+      } else if (game_board[i][j] == 1) {
         context.draw_sprite("tojas.bmp", i * WIDTH, j * HEIGHT);
-      }
-      else if (game_board[i][j] == 2) {
+      } else if (game_board[i][j] == 2) {
         context.draw_sprite("tyuk.bmp", i * WIDTH, j * HEIGHT);
       }
     }
