@@ -41,10 +41,9 @@ void Gomoku::create_board(GameContext& context) {
   }
 }
 
-bool Gomoku::is_game_over() {
-  Analitics analytics;
-  std::vector<std::vector<int>> temp_game_board = game_board;
-  if (analytics.analyse_all(temp_game_board)) {
+bool Gomoku::is_game_over(int x, int y) {
+  Analytics analytics;
+  if (analytics.is_game_won(this->game_board, x, y)) {
     return true;
   }
   return false;
