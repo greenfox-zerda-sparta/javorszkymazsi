@@ -23,10 +23,15 @@ int main(int argc, char *argv[]) {
 
       while(client_text[0] != 'q'){
         SDLNet_TCP_Recv(client, client_text, 100);
-        std::cout << client_text << " ";
+        std::cout << "Client: " << std::endl;
+        std::cout << client_text << std::endl;
+        std::cout << std::endl;
         std::string buffer;
-        std::cin >> buffer;
+        std::cout << "Server: " << std::endl;
+        getline(std::cin, buffer);
+        std::cout << std::endl;
         text = buffer.c_str();
+        SDLNet_TCP_Send(client, text, 100);
       }
 
       SDLNet_TCP_Close(client);
