@@ -20,15 +20,15 @@ bool Gomoku::is_field_empty(int i, int j) {
 }
 
 void Gomoku::set_player1_choice(int x, int y) {
-
+  if (is_field_empty(x, y)) {
     game_board[x][y] = 1;
-
+  }
 }
 
-void Gomoku::set_player2_choice(int i, int j) {
-
-    game_board[i][j] = 2;
-
+void Gomoku::set_player2_choice(int x, int y) {
+  if (is_field_empty(x, y)) {
+    game_board[x][y] = 2;
+  }
 }
 
 void Gomoku::send_coordinates(int x, int y, TCPsocket& client) {
