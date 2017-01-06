@@ -4,8 +4,8 @@
 #include <map>
 #include "SDL.h"
 
-const int WIDTH = 40;
-const int HEIGHT = 40;
+const int WIDTH = 35;
+const int HEIGHT = 35;
 
 class GameContext {
 private:

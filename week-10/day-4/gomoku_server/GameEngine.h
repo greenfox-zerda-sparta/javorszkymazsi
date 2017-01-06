@@ -11,7 +11,7 @@ private:
   TCPsocket client;
   TCPsocket server;
   SDLNet_SocketSet set;
-  int click_counter;
+  bool can_step;
   int x;
   int y;
 public:
