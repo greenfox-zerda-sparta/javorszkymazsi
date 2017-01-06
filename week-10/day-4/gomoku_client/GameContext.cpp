@@ -2,7 +2,7 @@
 
 GameContext::GameContext(unsigned int screen_width, unsigned int screen_height) {
   SDL_Init(SDL_INIT_VIDEO);
-  screen = SDL_CreateWindow("Gomoku Client",
+  screen = SDL_CreateWindow("Gomoku Client - Tyúk",
                             SDL_WINDOWPOS_UNDEFINED,
                             SDL_WINDOWPOS_UNDEFINED,
                             screen_width, screen_height,

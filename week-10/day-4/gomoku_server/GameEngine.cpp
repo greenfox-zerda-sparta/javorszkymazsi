@@ -5,13 +5,15 @@ GameEngine::GameEngine(Gomoku* g, unsigned int screen_width, unsigned int screen
   SDLNet_Init();
 
   IPaddress ip;
+  set = SDLNet_AllocSocketSet(2);
   SDLNet_ResolveHost(&ip, NULL, 1234);
   server = SDLNet_TCP_Open(&ip); //listening
-
+  SDLNet_TCP_AddSocket(set, server);
   //int coordinates[2] = {10, 10};
   while (1) {
     client = SDLNet_TCP_Accept(server);
     if (client) {
+      SDLNet_TCP_AddSocket(set, client);
       //SDLNet_TCP_Send(client, coordinates, 100);
 
       break;
@@ -43,6 +45,16 @@ void GameEngine::run() {
   SDL_Event event;
   int gameover = 0;
   while (!gameover) {
+    int activeSockets = SDLNet_CheckSockets(set, 5);
+    int player2_coordinates[2];
+    if (activeSockets != 0) {
+       int gotMessage = SDLNet_SocketReady(client);
+       if (gotMessage != 0) {
+         SDLNet_TCP_Recv(client, &player2_coordinates, 100);
+         game->set_player2_choice(player2_coordinates[0], player2_coordinates[1]);
+         game->create_board(*context);
+      }
+    }
     if (SDL_PollEvent(&event)) {
       switch (event.type) {
         case SDL_QUIT:
@@ -63,10 +75,6 @@ void GameEngine::run() {
             game->create_board(*context);
             int player1_coordinates[2] = {x / WIDTH, y / HEIGHT};
             SDLNet_TCP_Send(client, player1_coordinates, 100);
-            int player2_coordinates[2];
-            SDLNet_TCP_Recv(client, player2_coordinates, 100);
-            game->set_player2_choice(player2_coordinates[0], player2_coordinates[1]);
-            game->create_board(*context);
             if (game->is_game_over(x / WIDTH, y / HEIGHT)) {
               game->render(*context);
               SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,

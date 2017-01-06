@@ -10,6 +10,7 @@ private:
   Gomoku* game;
   TCPsocket client;
   TCPsocket server;
+  SDLNet_SocketSet set;
   int click_counter;
   int x;
   int y;
