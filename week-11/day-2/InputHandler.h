@@ -6,6 +6,7 @@ class InputHandler {
 public:
   InputHandler();
   void demand_input(std::string&);
+  bool is_y_pressed();
   virtual ~InputHandler();
 };
 

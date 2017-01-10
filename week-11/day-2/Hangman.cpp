@@ -6,13 +6,13 @@ Hangman::Hangman() {
   this->secret_word = pick_random_word();
   fill_guessed_word_with_zeros();
   output_handler.print_welcome_message();
-  std::cout << get_secret_word() << std::endl;
+  std::cout << secret_word << std::endl;
   run();
 }
 
 void Hangman::run() {
   while (!is_game_over()) {
-    output_handler.print_hit_characters(guessed_word, word_count);
+    output_handler.print_characters(guessed_word);
     input_handler.demand_input(guessed_char);
     if (is_guessed_char_in_word()) {
       fill_guessed_word_with_char(guessed_char);
@@ -21,7 +21,14 @@ void Hangman::run() {
       output_handler.print_guessed_wrong(guessed_char);
     }
   }
-  output_handler.print_you_won();
+  output_handler.print_you_won(secret_word);
+  if (input_handler.is_y_pressed()) {
+    secret_word = pick_random_word();
+    guessed_word = "";
+    fill_guessed_word_with_zeros();
+    std::cout << secret_word << std::endl;
+    run();
+  }
 }
 
 std::vector<std::string> Hangman::read_file(std::string file_name) {
@@ -79,6 +86,6 @@ bool Hangman::is_game_over() {
 }
 
 Hangman::~Hangman() {
-  word_count = 0;
+
 }
 
