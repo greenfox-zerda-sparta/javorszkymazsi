@@ -13,8 +13,8 @@ public:
   bool is_field_empty(int, int);
   void set_player1_choice(int, int);
   void set_player2_choice(int, int);
-  void send_coordinates(int, int, TCPsocket&);
-  int* receive_coordinates(TCPsocket&);
+  void send_coordinates(int, int, TCPsocket);
+  int* receive_coordinates(TCPsocket);
   void create_board(GameContext&);
   void initialize_board();
   bool is_game_over(int, int);

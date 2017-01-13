@@ -1,6 +1,7 @@
 #include "GameEngine.h"
 
 GameEngine::GameEngine(Gomoku* g, unsigned int screen_width, unsigned int screen_height) {
+  SDL_Init(SDL_INIT_EVERYTHING);
   SDLNet_Init();
   IPaddress ip;
   set = SDLNet_AllocSocketSet(2);
@@ -16,22 +17,22 @@ GameEngine::GameEngine(Gomoku* g, unsigned int screen_width, unsigned int screen
 }
 
 GameEngine::~GameEngine() {
-  SDLNet_FreeSocketSet(set);
   SDLNet_TCP_Close(client);
-  delete game;
+  //SDLNet_FreeSocketSet(set);
   delete context;
+
 }
 
 void GameEngine::run() {
   SDL_Event event;
   int gameover = 0;
   while (!gameover) {
-    int activeSockets = SDLNet_CheckSockets(set, 5);
+    int activeSockets = SDLNet_CheckSockets(set, 10);
     int player1_coordinates[2];
     if (activeSockets != 0) {
       int gotMessage = SDLNet_SocketReady(server);
       if (gotMessage != 0) {
-        SDLNet_TCP_Recv(client, player1_coordinates, 100);
+        SDLNet_TCP_Recv(client, player1_coordinates, sizeof(int) * 2);
         if (player1_coordinates[0] == 42 && player1_coordinates[1] == 42) {
           game->render(*context);
           SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,
@@ -54,6 +55,8 @@ void GameEngine::run() {
         case SDL_KEYDOWN:
           switch (event.key.keysym.sym) {
             case SDLK_ESCAPE:
+              gameover = 1;
+              break;
             case SDLK_q:
               gameover = 1;
               break;
@@ -66,11 +69,11 @@ void GameEngine::run() {
               game->set_player2_choice(x / WIDTH, y / HEIGHT);
               game->create_board(*context);
               int player2_coordinates[2] = {x / WIDTH, y / HEIGHT};
-              SDLNet_TCP_Send(client, player2_coordinates, 100);
+              SDLNet_TCP_Send(client, player2_coordinates, sizeof(int) * 2);
               if (game->is_game_over(x / WIDTH, y / HEIGHT)) {
                 player2_coordinates[0] = 42;
                 player2_coordinates[1] = 42;
-                SDLNet_TCP_Send(client, player2_coordinates, 100);
+                SDLNet_TCP_Send(client, player2_coordinates, sizeof(int) * 2);
                 game->render(*context);
                 SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,
                                          "End of game",

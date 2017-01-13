@@ -31,12 +31,12 @@ void Gomoku::set_player2_choice(int x, int y) {
   }
 }
 
-void Gomoku::send_coordinates(int x, int y, TCPsocket& client) {
+void Gomoku::send_coordinates(int x, int y, TCPsocket client) {
   int coordinates[2] = {x, y};
   SDLNet_TCP_Send(client, coordinates, 8);
 }
 
-int* Gomoku::receive_coordinates(TCPsocket& server) {
+int* Gomoku::receive_coordinates(TCPsocket server) {
   int coordinates[2];
   SDLNet_TCP_Recv(server, coordinates, 8);
   return coordinates;

@@ -14,6 +14,8 @@ GameContext::~GameContext() {
   for (std::map<std::string, SDL_Texture*>::iterator it = sprites.begin(); it != sprites.end(); ++it) {
     SDL_DestroyTexture(it->second);
   }
+  SDL_DestroyRenderer(renderer);
+  SDL_DestroyWindow(screen);
   SDL_Quit();
 }
 
