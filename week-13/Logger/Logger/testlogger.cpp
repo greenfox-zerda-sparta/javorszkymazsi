@@ -7,7 +7,6 @@ TestLogger::TestLogger(QObject * parent) : QObject(parent) {
 
 void TestLogger::test_debug() {
   Logger logger("Debug");
-  QLoggingCategory* debug = logger.getDebugCategory();
 }
 
 void TestLogger::test_info() {

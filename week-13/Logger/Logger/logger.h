@@ -1,20 +1,22 @@
 ﻿#pragma once
 #include <QProcessEnvironment>
+#include <QTextStream>
 
 class Logger {
 private:
   QProcessEnvironment _environment;
+  QString _baseLevel;
+  QTextStream* _cout;
+  QTextStream* _cerr;
+  QLoggingCategory* _logging;
+  QString _actualLogLevel = "";
 
 public:
-  Logger(QString category);
-  QLoggingCategory* debug;
-  QLoggingCategory* info;
-  QLoggingCategory* warning;
-  QLoggingCategory* critical;
+  Logger(const char*);
   ~Logger();
-  void myCategoryFilter(QLoggingCategory *category);
-  QLoggingCategory* getDebugCategory();
-  QLoggingCategory* getInfoCategory();
-  QLoggingCategory* getWarningCategory();
-  QLoggingCategory* getCriticalCategory();
+  void debug(const char*);
+  void info(const char*);
+  void warning(const char*);
+  void critical(const char*);
+  void dummyLogging();
 };

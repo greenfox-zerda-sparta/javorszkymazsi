@@ -19,7 +19,7 @@ int main(int argc, char** argv) {
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    Logger w("Debug");
+    Logger w("INFO");
     return a.exec();
 }
 

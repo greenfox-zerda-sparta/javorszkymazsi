@@ -2,87 +2,95 @@
 #include <QDebug>
 #include <QLoggingCategory>
 
-
-Logger::Logger(QString category) {
+Logger::Logger(const char* category) {
   _environment = QProcessEnvironment::systemEnvironment();
+  _baseLevel = _environment.value("LOG", category);
+  _cout = new QTextStream(stdout);
+  _cerr = new QTextStream(stderr);
   QStringList qStringList = _environment.toStringList();
   qStringList.append(category);
-  debug = new QLoggingCategory("Debug");
-  info = new QLoggingCategory("Info");
-  warning = new QLoggingCategory("Warning");
-  critical = new QLoggingCategory("Critical");
-  
-  for (int i = 0; i < qStringList.size(); ++i) {
-    qDebug() << i << qStringList.at(i).toUtf8().constData();
-    if (qStringList.at(i) == "Debug") {
-      qDebug() << "Megvan a debug";
-      myCategoryFilter(debug);
-    }
-    else if (qStringList.at(i) == "Info") {
-      qDebug() << "Info van";
-      myCategoryFilter(info);
-    }
-    else if (qStringList.at(i) == "Warning") {
-      qDebug() << "Warning van";
-      myCategoryFilter(warning);
-    }
-    else if (qStringList.at(i) == "Critical") {
-      qDebug() << "Critical van";
-      myCategoryFilter(critical);
-    }
-    
-  }
-  
-  //qDebug() << debug->categoryName();
-  
-}
+  _logging = new QLoggingCategory(category);
 
-void Logger::myCategoryFilter(QLoggingCategory *category) {
-  // configure driver.usb category here, otherwise forward to default filter.
-  if (qstrcmp(category->categoryName(), "Debug") == 0) {
-    debug->setEnabled(QtDebugMsg, true);
-    info->setEnabled(QtDebugMsg, true);           //valszeg nem mindenhova QtDebugMsg-ot kell írni QtMsgType-nak
-    warning->setEnabled(QtDebugMsg, true);
-    critical->setEnabled(QtDebugMsg, true);
-    if (debug->isEnabled(QtDebugMsg)) {
-      qDebug() << "PLEASE";
-    }
+  if (_baseLevel == "DEBUG") {
+    qDebug() << "Megvan a debug";
+    _logging->setEnabled(QtDebugMsg, true);
+    _logging->setEnabled(QtInfoMsg, true);
+    _logging->setEnabled(QtWarningMsg, true);
+    _logging->setEnabled(QtCriticalMsg, true);
+    dummyLogging();
   }
-  else if (qstrcmp(category->categoryName(), "Info") == 0) {
-    debug->setEnabled(QtDebugMsg, false);
-    info->setEnabled(QtInfoMsg, true);
-    warning->setEnabled(QtWarningMsg, true);
-    critical->setEnabled(QtCriticalMsg, true);
+  else if (_baseLevel == "INFO")
+  {
+    qDebug() << "Info van";
+    _logging->setEnabled(QtDebugMsg, false);
+    _logging->setEnabled(QtInfoMsg, true);
+    _logging->setEnabled(QtWarningMsg, true);
+    _logging->setEnabled(QtCriticalMsg, true);
+    dummyLogging();
   }
-  else if (qstrcmp(category->categoryName(), "Warning") == 0) {
-    debug->setEnabled(QtDebugMsg, false);
-    info->setEnabled(QtInfoMsg, false);
-    warning->setEnabled(QtWarningMsg, true);
-    critical->setEnabled(QtCriticalMsg, true);
+  else if (_baseLevel == "WARNING")
+  {
+    qDebug() << "Warning van";
+    _logging->setEnabled(QtDebugMsg, false);
+    _logging->setEnabled(QtInfoMsg, false);
+    _logging->setEnabled(QtWarningMsg, true);
+    _logging->setEnabled(QtCriticalMsg, true);
+    dummyLogging();
   }
-  else if (qstrcmp(category->categoryName(), "Critical") == 0) {
-    debug->setEnabled(QtDebugMsg, false);
-    info->setEnabled(QtInfoMsg, false);
-    warning->setEnabled(QtWarningMsg, false);
-    critical->setEnabled(QtCriticalMsg, true);
-    qDebug() << "eljutottam ide is ";
+  else if (_baseLevel == "CRITICAL")
+  {
+    qDebug() << "Critical van";
+    _logging->setEnabled(QtDebugMsg, false);
+    _logging->setEnabled(QtInfoMsg, false);
+    _logging->setEnabled(QtWarningMsg, false);
+    _logging->setEnabled(QtCriticalMsg, true);
+    dummyLogging();    
   }
 }
 
-Logger::~Logger() {}
-
-QLoggingCategory* Logger::getDebugCategory() {
-  return debug;
+Logger::~Logger()
+{
+  delete _cout;
+  delete _cerr;
+  delete _logging;
 }
 
-QLoggingCategory* Logger::getInfoCategory() {
-  return info;
+void Logger::debug(const char* debug)
+{
+  if (_logging->isDebugEnabled())
+  {
+    *_cout << "DEBUG: " << debug << endl;
+  }  
 }
 
-QLoggingCategory* Logger::getWarningCategory() {
-  return warning;
+void Logger::info(const char* info)
+{
+  if (_logging->isInfoEnabled())
+  {
+    *_cout << "INFO: " << info << endl;
+  }  
 }
 
-QLoggingCategory* Logger::getCriticalCategory() {
-  return critical;
+void Logger::warning(const char* warning)
+{
+  if (_logging->isWarningEnabled())
+  {
+    *_cerr << "WARNING: " << warning << endl;
+  }  
+}
+
+void Logger::critical(const char* critical)
+{
+  if (_logging->isCriticalEnabled())
+  {
+    *_cerr << "CRITICAL: " << critical << endl;
+  }  
+}
+
+void Logger::dummyLogging()
+{
+  debug("eljutottam idáig");
+  info("mindig éhes vagyok");
+  warning("inni kell sokat");
+  critical("most nincs ilyen");
 }
