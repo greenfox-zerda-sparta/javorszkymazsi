@@ -1,0 +1,11 @@
+﻿  Moc'ing testlogger.h...
+  moc_testlogger.cpp
+c:\users\hp\documents\visual studio 2015\projects\logger\logger\generatedfiles\release\../../testlogger.h(3): fatal error C1083: Cannot open include file: 'QTest/QTest': No such file or directory
+  logger.cpp
+logger.cpp(47): error C3867: 'QMessageLogger::debug': non-standard syntax; use '&' to create a pointer to member
+logger.cpp(47): error C2297: '<<': illegal, right operand has type 'const char [7]'
+logger.cpp(47): warning C4552: '<<': operator has no effect; expected operator with side-effect
+  main.cpp
+  testlogger.cpp
+c:\users\hp\documents\visual studio 2015\projects\logger\logger\testlogger.h(3): fatal error C1083: Cannot open include file: 'QTest/QTest': No such file or directory
+  Generating Code...
